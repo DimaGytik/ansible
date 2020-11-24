@@ -1,0 +1,26 @@
+---
+# tasks file for softinstall
+#    - debug: var=ansible_os_family
+
+
+    - block:
+        - name: install centos
+          yum: name={{ item }} state=installed
+          loop:
+            - vim
+            - mc
+            - net-tools
+            - tree
+
+      when: ansible_os_family == "RedHat"
+
+    - block:
+        - name: install centos
+          yum: name={{ items }} state=installed
+          loop:
+            - vim
+            - mc
+            - net-tools
+            - tree
+      when: ansible_os_family == "Debian"
+

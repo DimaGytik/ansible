@@ -1,0 +1,6 @@
+---
+# vars file for createuser
+user_list:
+  dima4: "ssh-1111111"
+  dima5: "123213214"
+

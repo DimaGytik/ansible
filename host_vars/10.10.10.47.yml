@@ -1,0 +1,5 @@
+varproxy: http://docker.wiseweb.by
+check: false
+tut: https://tut.by
+ansible_user: root 
+hostname: test

@@ -1,0 +1,10 @@
+---
+# handlers file for proxy
+- name: restart nginx redhat
+  service: name=nginx state=restarted
+  when: ansible_os_family == "RedHat"
+
+- name: restart nginx ubuntu
+  service: name=nginx state=restarted
+  when: ansible_os_family == "Debian"
+

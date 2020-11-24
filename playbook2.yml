@@ -1,0 +1,11 @@
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: print phone details
+      debug: msg="user {{ item.key }} is {{ item.value.name }} ({{ item.value.telephone }})"
+      with_dict: "{{ users }}"
+  vars:
+    users:
+      alice:
+        name: "Alice"
+        telephone: 123

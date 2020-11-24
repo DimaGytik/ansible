@@ -1,0 +1,33 @@
+- name: test3
+  hosts: all
+  become: yes
+
+  vars:
+   
+  tasks:
+    - debug: var=ansible_os_family
+
+    - block:
+        - name: install centos
+          yum: name={{ item }} state=installed
+          loop: 
+            - vim
+            - mc
+            - net-tools  
+            - tree
+
+      when: ansible_os_family == "RedHat"
+
+    - block:
+        - name: install centos
+          yum: name={{ items }} state=installed
+          loop:
+            - vim
+            - mc
+            - net-tools
+            - tree
+      when: ansible_os_family == "Debian" 
+
+    - name: add user sudo 
+      user: name=opsadmin groups=wheel shell=/bin/bash password=12345
+          

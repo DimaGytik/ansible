@@ -1,0 +1,22 @@
+---
+# tasks file for proxy
+- block:
+    - name: install nginx redhat
+      yum: name=nginx state=present
+    - name:
+      service: name=nginx state=started enabled=yes
+  when: ansible_os_family == "RedHat"
+
+- block:
+    - name: install nginx debian
+      apt: name=nginx state=present
+    - name:
+      service: name=nginx state=started enabled=yes
+  when: ansible_os_family == "Debian"
+- name: create index.html
+  template: src=proxy.j2 dest={{ destdir }}/proxy.conf mode=0555
+
+  notify:
+  - restart nginx redhat
+  - restart nginx ubuntu
+

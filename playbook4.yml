@@ -1,0 +1,6 @@
+- name: test4
+  hosts: all
+  become: yes
+
+  roles:
+    - softinstall
